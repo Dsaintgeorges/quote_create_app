@@ -1,0 +1,56 @@
+<div>
+  <form [formGroup]="createQuoteFormGroup" (submit)="validate()">
+    <div class="client">
+        <span>
+      <label>Client</label>
+       <input type="text" formControlName="client">
+    </span><span>
+      <label>Rue</label>
+       <input type="text" formControlName="adressRoad">
+    </span><span>
+      <label>Numero</label>
+       <input type="text" formControlName="adressNumber">
+    </span><span>
+      <label>Code postal</label>
+       <input type="text" formControlName="postalCode">
+    </span><span>
+      <label>Ville</label>
+       <input type="text" formControlName="city">
+    </span>
+    </div>
+    <div class="lines">
+      <p>lines</p>
+      <div formArrayName="lines">
+        <div *ngFor="let line of data.linesArray;let i = index">
+          <div [formGroupName]="i">
+            <span>
+      <label>Ref</label>
+       <input type="text" formControlName="reference">
+    </span>
+            <span>
+      <label>Description</label>
+       <input type="text" formControlName="description">
+    </span>
+            <span>
+      <label>P.U</label>
+       <input type="text" formControlName="unitPrice">
+    </span>
+            <span>
+      <label>Qty</label>
+       <input type="text" formControlName="quantity">
+    </span>
+            <span>
+      <label>Total</label>
+       <input type="text" formControlName="total">
+    </span>
+          </div>
+        </div>
+      </div>
+      <button type="button" (click)="addLine()">Ajouter une ligne</button>
+    </div>
+    <button type="submit" [disabled]="!data.linesArray.length"> envoyer</button>
+
+
+  </form>
+</div>
+<button (click)="downloadPdf()">Download PDF</button>

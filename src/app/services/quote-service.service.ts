@@ -12,4 +12,10 @@ export class QuoteServiceService {
   createQuote(jsonBody:any):Observable<any>{
     return this.http.post("http://localhost:8080/createQuote",jsonBody)
 }
+
+// download pdf file from server
+downloadPdf():Observable<any>{
+  return this.http.get("http://localhost:8080/result",{responseType:'blob'})
+}
+
 }

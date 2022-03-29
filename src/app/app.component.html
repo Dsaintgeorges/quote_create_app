@@ -1,55 +1,34 @@
-<div>
-  <form [formGroup]="createQuoteFormGroup" (submit)="validate()">
-    <div class="client">
-        <span>
-      <label>Client</label>
-       <input type="text" formControlName="client">
-    </span><span>
-      <label>Rue</label>
-       <input type="text" formControlName="adressRoad">
-    </span><span>
-      <label>Numero</label>
-       <input type="text" formControlName="adressNumber">
-    </span><span>
-      <label>Code postal</label>
-       <input type="text" formControlName="postalCode">
-    </span><span>
-      <label>Ville</label>
-       <input type="text" formControlName="city">
-    </span>
+<!--create angular mat sidenav-->
+<mat-sidenav-container style="height: 100%">
+  <mat-sidenav #sidenav mode="push" opened="true">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" routerLinkActive="active">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </a>
+      <a mat-list-item routerLink="/register" routerLinkActive="active">
+        <mat-icon>info</mat-icon>
+        <span>Register</span>
+      </a>
+      <a mat-list-item routerLink="/create-quote" routerLinkActive="active">
+        <mat-icon>contact_mail</mat-icon>
+        <span>Contact</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Angular Material</span>
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
     </div>
-    <div class="lines">
-      <p>lines</p>
-      <div formArrayName="lines">
-      <div *ngFor="let line of data.linesArray;let i = index">
-        <div [formGroupName]="i">
-            <span>
-      <label>Ref</label>
-       <input type="text" formControlName="reference">
-    </span>
-          <span>
-      <label>Description</label>
-       <input type="text" formControlName="description">
-    </span>
-          <span>
-      <label>P.U</label>
-       <input type="text" formControlName="unitPrice">
-    </span>
-          <span>
-      <label>Qty</label>
-       <input type="text" formControlName="quantity">
-    </span>
-          <span>
-      <label>Total</label>
-       <input type="text" formControlName="total">
-    </span>
-        </div>
-      </div>
-      </div>
-      <button type="button" (click)="addLine()">Ajouter une ligne</button>
-    </div>
-    <button type="submit" [disabled]="!data.linesArray.length"> envoyer</button>
+  </mat-sidenav-content>
 
 
-  </form>
-</div>
+
+
+
