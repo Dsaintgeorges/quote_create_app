@@ -1,9 +1,12 @@
 export class Quote {
   client: Client;
   linesArray: Lines[];
-  totalHt:number;
-  totalTtc:number;
-  tva:number;
+  pro:Pro;
+  totalHt: number;
+  totalTtc: number;
+  tva: number;
+  date: string;
+
   constructor() {
     this.client = new Client();
     this.linesArray = [];
@@ -16,6 +19,7 @@ export class Lines {
   unitPrice: number;
   quantity: number;
   total: number;
+
   constructor() {
     this.reference = "";
     this.description = "";
@@ -31,6 +35,7 @@ export class Client {
   adressNumber: string;
   postalCode: number;
   city: string;
+
   constructor() {
     this.name = "";
     this.adressRoad = "";
@@ -38,4 +43,22 @@ export class Client {
     this.postalCode = 0;
     this.city = "";
   }
+}
+
+export class Pro {
+  name: string;
+  address: string;
+  zipcode: string;
+  city: string;
+  phone: number;
+  email: string;
+  constructor() {
+    this.name = "";
+    this.address = "";
+    this.zipcode = "";
+    this.phone = 0;
+    this.email = "";
+    this.city = "";
+  }
+
 }

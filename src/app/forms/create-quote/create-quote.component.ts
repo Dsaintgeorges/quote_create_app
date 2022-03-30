@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Lines, Quote} from "../../models/quote";
 import {FormArray, FormBuilder, Validators} from "@angular/forms";
 import {QuoteServiceService} from "../../services/quote-service.service";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-create-quote',
@@ -50,10 +51,21 @@ export class CreateQuoteComponent implements OnInit {
     this.data.client.name = form.client;
     this.data.linesArray = form.lines;
     this.calculateTotal();
+    const user = JSON.parse(<string>sessionStorage.getItem('user'));
+    this.data.date = moment().format('DD/MM/YYYY');
+    this.data.pro = {
+      name: user.username,
+      address: user.address,
+      zipcode: user.zipcode,
+      city: user.city,
+      email: user.email,
+      phone: user.phone
+    }
     this.quoteService.createQuote(this.data).subscribe(
       (data:any) => console.log(data)
     )
   }
+
 
   calculateTotal() {
     let total = 0;
