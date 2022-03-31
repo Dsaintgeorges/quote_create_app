@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/Users";
 import {LoginRequest} from "../models/LoginRequest";
-import {environment} from "../../environments/environment";
+import {environment} from "../../environments/environment.prod";
 
 const REGISTER = environment.apiUrl + 'createUser';
 const LOGIN = environment.apiUrl + 'login';
