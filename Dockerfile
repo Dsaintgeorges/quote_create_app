@@ -1,9 +1,11 @@
+#stage 1
 
-FROM node:16
+FROM node:16-alpine as build
+COPY . /app
 WORKDIR /app
-COPY . .
 RUN npm install
-RUN npm run build
-
+RUN npm run build --prod
+#stage 2
 FROM nginx:alpine
-COPY --from=node /app/dist/demo-app /usr/share/nginx/html
+COPY --from=build /app/dist/quoteCreator /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/

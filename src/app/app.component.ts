@@ -3,6 +3,8 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angul
 import {QuoteServiceService} from "./services/quote-service.service";
 import {Client, Lines, Quote} from "./models/quote";
 import {Router} from "@angular/router";
+import {User} from "./models/Users";
+import {UserService} from "./services/user.service";
 
 @Component({
   selector: 'app-root',
@@ -11,13 +13,21 @@ import {Router} from "@angular/router";
 })
 export class AppComponent implements OnInit {
 
-  constructor(private router:Router) {
+  isLoggedIn: boolean = false;
+
+  constructor(private router:Router,private userService:UserService) {
+    this.userService.isLoggedIn.subscribe(
+      (data)=>{
+        this.isLoggedIn=data;
+      }
+    )
   }
 
   ngOnInit() {
   }
 
   clearSession() {
+    this.userService.isLoggedIn.next(false);
     sessionStorage.clear();
     this.router.navigate(['/']);
   }

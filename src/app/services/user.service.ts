@@ -3,15 +3,19 @@ import {HttpClient} from "@angular/common/http";
 import {User} from "../models/Users";
 import {LoginRequest} from "../models/LoginRequest";
 import {environment} from "../../environments/environment.prod";
+import {Subject} from "rxjs";
 
-const REGISTER = environment.apiUrl + 'createUser';
-const LOGIN = environment.apiUrl + 'login';
+const REGISTER = environment.apiUrl + '/createUser';
+const LOGIN = environment.apiUrl + '/login';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  isLoggedIn = new Subject<boolean>();
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    this.isLoggedIn.next(false);
+  }
   // register user from server observable
   registerUser(user:User) {
     return this.http.post(REGISTER, user);

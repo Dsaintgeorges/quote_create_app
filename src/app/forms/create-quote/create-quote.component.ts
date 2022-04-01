@@ -70,11 +70,17 @@ export class CreateQuoteComponent implements OnInit {
   calculateTotal() {
     let total = 0;
     this.data.linesArray.forEach(x => {
+      x.total = x.unitPrice * x.quantity;
       total += x.total
     })
     this.data.totalHt = total;
     this.data.tva = total * 0.21;
     this.data.totalTtc = total + this.data.tva;
+  }
+  calculateTotalLine(index:number) {
+    console.log(this.createQuoteFormGroup.value.lines[index]);
+    const line = this.createQuoteFormGroup.value.lines[index];
+    this.createQuoteFormGroup.value.lines[index].total = line.unitPrice * line.quantity;
   }
 
   addLine() {

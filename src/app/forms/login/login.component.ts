@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   this.userService.loginUser(this.loginForm.value).subscribe(
     (res:any) => {
       this.userService.storeUserData(res.token, res.user);
+      this.userService.isLoggedIn.next(true);
       this.router.navigate(['/create-quote']);
     },
     err => {

@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { RegisterComponent } from './forms/register/register.component';
 import { CreateQuoteComponent } from './forms/create-quote/create-quote.component';
@@ -25,18 +25,19 @@ import {UserService} from "./services/user.service";
     CreateQuoteComponent,
     LoginComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatMenuModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatToolbarModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatMenuModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        MatToolbarModule,
+        FormsModule,
+    ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,

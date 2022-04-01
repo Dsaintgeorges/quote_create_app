@@ -19,7 +19,7 @@
     </span>
     </div>
     <div class="lines">
-      <p>lines</p>
+      <h2>lines</h2>
       <div formArrayName="lines">
         <div *ngFor="let line of data.linesArray;let i = index">
           <div [formGroupName]="i">
@@ -33,15 +33,14 @@
     </span>
             <span>
       <label>P.U</label>
-       <input type="text" formControlName="unitPrice">
+       <input type="number" formControlName="unitPrice">
     </span>
             <span>
       <label>Qty</label>
-       <input type="text" formControlName="quantity">
+       <input type="number" formControlName="quantity" (change)="calculateTotalLine(i)">
     </span>
             <span>
-      <label>Total</label>
-       <input type="text" formControlName="total">
+              <p type="text" formControlName="total"> Total : {{createQuoteFormGroup.value.lines[i].total}}</p>
     </span>
           </div>
         </div>
