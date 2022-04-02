@@ -24,7 +24,7 @@
         <div *ngFor="let line of data.linesArray;let i = index">
           <div [formGroupName]="i">
             <span>
-      <label>Ref</label>
+      <label>Réference produit</label>
        <input type="text" formControlName="reference">
     </span>
             <span>
@@ -32,11 +32,11 @@
        <input type="text" formControlName="description">
     </span>
             <span>
-      <label>P.U</label>
+      <label>Prix unitaire</label>
        <input type="number" formControlName="unitPrice">
     </span>
             <span>
-      <label>Qty</label>
+      <label>Quantité</label>
        <input type="number" formControlName="quantity" (change)="calculateTotalLine(i)">
     </span>
             <span>
@@ -52,4 +52,3 @@
 
   </form>
 </div>
-<button (click)="downloadPdf()">Download PDF</button>

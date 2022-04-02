@@ -8,7 +8,11 @@
       </a>
       <a *ngIf="isLoggedIn" mat-list-item routerLink="/create-quote" routerLinkActive="active">
         <mat-icon>quote</mat-icon>
-        <span>Create</span>
+        <span>Création</span>
+      </a>
+      <a *ngIf="isLoggedIn" mat-list-item routerLink="/quote-list" routerLinkActive="active">
+        <mat-icon>quote</mat-icon>
+        <span>Liste des devis</span>
       </a>
       <a *ngIf="!isLoggedIn" mat-list-item routerLink="/register" routerLinkActive="active">
         <mat-icon>account_circle</mat-icon>

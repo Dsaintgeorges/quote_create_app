@@ -2,3 +2,10 @@
 .form-group {
     margin-bottom: 15px;
 }
+
+.is-invalid {
+    border:1px solid #e3342f;
+}
+.invalid{
+  color: #e3342f;
+}

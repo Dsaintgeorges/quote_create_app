@@ -61,6 +61,7 @@ export class CreateQuoteComponent implements OnInit {
       email: user.email,
       phone: user.phone
     }
+    this.data.userId = user.id;
     this.quoteService.createQuote(this.data).subscribe(
       (data:any) => console.log(data)
     )
@@ -102,15 +103,5 @@ export class CreateQuoteComponent implements OnInit {
     this.data.linesArray.push(line)
   }
 
-  // function to download a pdf file from blob
-  downloadPdf() {
-    this.quoteService.downloadPdf().subscribe(
-      (data:any) => {
-        const file = new Blob([data], {type: 'application/pdf'});
-        const fileURL = URL.createObjectURL(file);
-        window.open(fileURL);
-      }
-    )
-  }
 
 }

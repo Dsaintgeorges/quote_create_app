@@ -17,13 +17,15 @@ import { LoginComponent } from './forms/login/login.component';
 import {TokenInterceptor} from "./services/token.interceptor";
 import {AuthenticationGuard} from "./guard/authentication.guard";
 import {UserService} from "./services/user.service";
+import { QuoteListComponent } from './component/quote-list/quote-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     CreateQuoteComponent,
-    LoginComponent
+    LoginComponent,
+    QuoteListComponent
   ],
     imports: [
         BrowserModule,

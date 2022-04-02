@@ -6,6 +6,7 @@ export class Quote {
   totalTtc: number;
   tva: number;
   date: string;
+  userId:number;
 
   constructor() {
     this.client = new Client();
