@@ -16,14 +16,17 @@ export class AppComponent implements OnInit {
   isLoggedIn: boolean = false;
 
   constructor(private router:Router,private userService:UserService) {
+    this.isLoggedIn = this.userService.getToken();
     this.userService.isLoggedIn.subscribe(
       (data)=>{
+        console.log("hee")
         this.isLoggedIn=data;
       }
     )
   }
 
   ngOnInit() {
+
   }
 
   clearSession() {

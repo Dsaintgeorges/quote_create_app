@@ -18,6 +18,8 @@ import {TokenInterceptor} from "./services/token.interceptor";
 import {AuthenticationGuard} from "./guard/authentication.guard";
 import {UserService} from "./services/user.service";
 import { QuoteListComponent } from './component/quote-list/quote-list.component';
+import { UploadTemplateComponent } from './component/upload-template/upload-template.component';
+import { TemplateListComponent } from './component/template-list/template-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { QuoteListComponent } from './component/quote-list/quote-list.component'
     RegisterComponent,
     CreateQuoteComponent,
     LoginComponent,
-    QuoteListComponent
+    QuoteListComponent,
+    UploadTemplateComponent,
+    TemplateListComponent
   ],
     imports: [
         BrowserModule,

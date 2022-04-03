@@ -1,0 +1,45 @@
+<!--create a list of templates -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Liste des templates importés</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Date de création</th>
+                                            <th>Téléchargement</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let template of templates">
+                                            <td>{{template.name}}</td>
+                                            <td>{{convertDate(template.created_at)}}</td>
+                                            <td>
+                                               <button (click)="downloadTemplate(template)">
+                                                 <mat-icon>download</mat-icon>
+                                               </button>
+                                              <button (click)="setDefautltTemplate(template)">
+                                                <mat-icon>default</mat-icon>
+                                              </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

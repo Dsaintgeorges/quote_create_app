@@ -6,13 +6,21 @@
         <mat-icon>home</mat-icon>
         <span>Home</span>
       </a>
+      <a *ngIf="isLoggedIn" mat-list-item routerLink="/upload-template" routerLinkActive="active">
+        <mat-icon>note_add</mat-icon>
+        <span>Ajout template</span>
+      </a>
       <a *ngIf="isLoggedIn" mat-list-item routerLink="/create-quote" routerLinkActive="active">
-        <mat-icon>quote</mat-icon>
+        <mat-icon>library_add</mat-icon>
         <span>Création</span>
       </a>
       <a *ngIf="isLoggedIn" mat-list-item routerLink="/quote-list" routerLinkActive="active">
-        <mat-icon>quote</mat-icon>
+        <mat-icon>list</mat-icon>
         <span>Liste des devis</span>
+      </a>
+      <a *ngIf="isLoggedIn" mat-list-item routerLink="/template-list" routerLinkActive="active">
+        <mat-icon>list</mat-icon>
+        <span>Liste des templates</span>
       </a>
       <a *ngIf="!isLoggedIn" mat-list-item routerLink="/register" routerLinkActive="active">
         <mat-icon>account_circle</mat-icon>

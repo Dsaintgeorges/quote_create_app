@@ -14,7 +14,7 @@ export class UserService {
   isLoggedIn = new Subject<boolean>();
 
   constructor(private http:HttpClient) {
-    this.isLoggedIn.next(false);
+    this.isLoggedIn.next(this.getToken());
   }
   // register user from server observable
   registerUser(user:User) {

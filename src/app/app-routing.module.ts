@@ -5,6 +5,8 @@ import {CreateQuoteComponent} from "./forms/create-quote/create-quote.component"
 import {LoginComponent} from "./forms/login/login.component";
 import {AuthenticationGuard} from "./guard/authentication.guard";
 import {QuoteListComponent} from "./component/quote-list/quote-list.component";
+import {UploadTemplateComponent} from "./component/upload-template/upload-template.component";
+import {TemplateListComponent} from "./component/template-list/template-list.component";
 
 let AuthGuard;
 const routes: Routes = [
@@ -14,6 +16,8 @@ const routes: Routes = [
   // route for create-quote component
   {path: 'create-quote', component: CreateQuoteComponent, canActivate: [AuthenticationGuard]},
   {path: 'quote-list',component: QuoteListComponent, canActivate: [AuthenticationGuard]},
+  {path:'template-list',component:TemplateListComponent, canActivate: [AuthenticationGuard]},
+  {path:'upload-template',component:UploadTemplateComponent, canActivate: [AuthenticationGuard]},
   {path:'login',component:LoginComponent},
 ];
 

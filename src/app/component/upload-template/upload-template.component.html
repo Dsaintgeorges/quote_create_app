@@ -1,0 +1,25 @@
+<!--upload file to server-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Upload Template</h3>
+                </div>
+                <div class="panel-body">
+                    <form (submit)="uploadTemplate()" [formGroup]="uploadForm">
+                        <div class="form-group">
+                            <label for="template_name">Template Name</label>
+                            <input formControlName="name" type="text" class="form-control" id="template_name" name="template_name" placeholder="Template Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="template_file">Template File</label>
+                            <input formControlName="file" type="file" (change)="changeFile($event)" class="form-control" id="template_file" name="template_file" placeholder="Template File">
+                        </div>
+                        <button [disabled]="error" type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
