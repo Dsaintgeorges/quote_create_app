@@ -20,6 +20,9 @@ import {UserService} from "./services/user.service";
 import { QuoteListComponent } from './component/quote-list/quote-list.component';
 import { UploadTemplateComponent } from './component/upload-template/upload-template.component';
 import { TemplateListComponent } from './component/template-list/template-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmComponent } from './modal/confirm/confirm.component';
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { TemplateListComponent } from './component/template-list/template-list.c
     LoginComponent,
     QuoteListComponent,
     UploadTemplateComponent,
-    TemplateListComponent
+    TemplateListComponent,
+    ConfirmComponent
   ],
     imports: [
         BrowserModule,
@@ -43,6 +47,8 @@ import { TemplateListComponent } from './component/template-list/template-list.c
         MatListModule,
         MatToolbarModule,
         FormsModule,
+        NgbModule,
+        MatInputModule,
     ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

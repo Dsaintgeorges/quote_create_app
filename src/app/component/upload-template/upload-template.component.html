@@ -14,7 +14,7 @@
                         </div>
                         <div class="form-group">
                             <label for="template_file">Template File</label>
-                            <input formControlName="file" type="file" (change)="changeFile($event)" class="form-control" id="template_file" name="template_file" placeholder="Template File">
+                            <input formControlName="file" type="file" (change)="changeFile($event)" class="form-control-file" id="template_file" name="template_file" placeholder="Template File">
                         </div>
                         <button [disabled]="error" type="submit" class="btn btn-default">Submit</button>
                     </form>

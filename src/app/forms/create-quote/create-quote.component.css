@@ -1,0 +1,8 @@
+input{
+  border-radius: 6px;
+}
+span{
+  display: grid;
+  flex:3;
+  justify-content: space-evenly;
+}

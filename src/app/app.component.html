@@ -1,7 +1,7 @@
 <!--create angular mat sidenav-->
 <mat-sidenav-container style="height: 100%" autosize>
   <mat-sidenav #sidenav mode="side" opened="true">
-    <mat-nav-list>
+    <mat-nav-list style="padding-top: 40px">
       <a mat-list-item routerLink="/" routerLinkActive="active">
         <mat-icon>home</mat-icon>
         <span>Home</span>
@@ -38,9 +38,9 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
+      <a (click)="sidenav.toggle()">
+        <mat-icon style="display: flex">menu</mat-icon>
+      </a>
       <span>Quote Creation</span>
     </mat-toolbar>
     <div class="content">

@@ -1,25 +1,30 @@
 <div>
   <form [formGroup]="createQuoteFormGroup" (submit)="validate()">
     <div class="client">
-        <span>
-      <label>Client</label>
-       <input type="text" formControlName="client">
-    </span><span>
+      <h2 style="text-align: center">Client</h2>
+      <span>
+      <label>Nom complet</label>
+       <input matInput type="text" formControlName="client">
+    </span>
+      <span>
       <label>Rue</label>
        <input type="text" formControlName="adressRoad">
-    </span><span>
+    </span>
+      <span>
       <label>Numero</label>
        <input type="text" formControlName="adressNumber">
-    </span><span>
+    </span>
+      <span>
       <label>Code postal</label>
        <input type="text" formControlName="postalCode">
-    </span><span>
+    </span>
+      <span>
       <label>Ville</label>
        <input type="text" formControlName="city">
     </span>
     </div>
     <div class="lines">
-      <h2>lines</h2>
+      <h2 style="text-align: center">lines</h2>
       <div formArrayName="lines">
         <div *ngFor="let line of data.linesArray;let i = index">
           <div [formGroupName]="i">
@@ -33,19 +38,26 @@
     </span>
             <span>
       <label>Prix unitaire</label>
-       <input type="number" formControlName="unitPrice">
+       <input type="number" formControlName="unitPrice" (change)="calculateTotalLine(i)">
     </span>
             <span>
       <label>Quantité</label>
        <input type="number" formControlName="quantity" (change)="calculateTotalLine(i)">
     </span>
             <span>
-              <p type="text" formControlName="total"> Total : {{createQuoteFormGroup.value.lines[i].total}}</p>
+              <p type="text"> Total : {{createQuoteFormGroup.value?.lines[i].total}}</p>
     </span>
+            <span>
+              <a (click)="deleteQuoteLine(i)">
+              <mat-icon>delete</mat-icon>
+                </a>
+            </span>
           </div>
         </div>
       </div>
-      <button type="button" (click)="addLine()">Ajouter une ligne</button>
+      <span>
+         <button type="button" (click)="addLine()">Ajouter une ligne</button>
+      </span>
     </div>
     <button type="submit" [disabled]="!data.linesArray.length"> envoyer</button>
 

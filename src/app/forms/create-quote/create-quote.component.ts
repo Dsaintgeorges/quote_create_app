@@ -3,6 +3,9 @@ import {Lines, Quote} from "../../models/quote";
 import {FormArray, FormBuilder, Validators} from "@angular/forms";
 import {QuoteServiceService} from "../../services/quote-service.service";
 import * as moment from "moment";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ConfirmComponent} from "../../modal/confirm/confirm.component";
+import {ComponentService} from "../../services/component.service";
 
 @Component({
   selector: 'app-create-quote',
@@ -16,10 +19,12 @@ export class CreateQuoteComponent implements OnInit {
   data: Quote = new Quote();
   lines = new FormArray([]);
 
-  constructor(private formBuilder: FormBuilder, private quoteService: QuoteServiceService) {
+  constructor(private formBuilder: FormBuilder, private quoteService: QuoteServiceService,
+              private componentService:ComponentService) {
   }
 
   ngOnInit() {
+
     // the lines is used with array of lines
     this.createQuoteFormGroup = this.formBuilder.group(
       {
@@ -42,7 +47,6 @@ export class CreateQuoteComponent implements OnInit {
   }
 
   validate() {
-    console.log(this.createQuoteFormGroup.value)
     const form = this.createQuoteFormGroup.value
     this.data.client.city = form.city;
     this.data.client.adressNumber = form.adressNumber;
@@ -63,7 +67,12 @@ export class CreateQuoteComponent implements OnInit {
     }
     this.data.userId = user.id;
     this.quoteService.createQuote(this.data).subscribe(
-      (data:any) => console.log(data)
+      (data:any) => console.log(data),
+      (err) => console.log(err),
+      ()=> {
+        this.createQuoteFormGroup.reset()
+        this.componentService.openModal("Devis créé avec succès")
+      }
     )
   }
 
@@ -79,7 +88,6 @@ export class CreateQuoteComponent implements OnInit {
     this.data.totalTtc = total + this.data.tva;
   }
   calculateTotalLine(index:number) {
-    console.log(this.createQuoteFormGroup.value.lines[index]);
     const line = this.createQuoteFormGroup.value.lines[index];
     this.createQuoteFormGroup.value.lines[index].total = line.unitPrice * line.quantity;
   }
@@ -104,4 +112,8 @@ export class CreateQuoteComponent implements OnInit {
   }
 
 
+
+  deleteQuoteLine(index:any) {
+    this.data.linesArray.splice(index,1);
+  }
 }

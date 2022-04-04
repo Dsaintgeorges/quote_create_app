@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TemplateService} from "../../services/template.service";
 import {FormBuilder, Validators} from "@angular/forms";
+import {ComponentService} from "../../services/component.service";
 
 @Component({
   selector: 'app-upload-template',
@@ -11,7 +12,7 @@ export class UploadTemplateComponent implements OnInit {
   error = false;
   uploadForm;
   file:any;
-  constructor(private templateService:TemplateService,private fb:FormBuilder) {
+  constructor(private templateService:TemplateService,private fb:FormBuilder,private compService:ComponentService) {
     this.uploadForm = fb.group({
       'file':[null],
       'name':['',Validators.required]
@@ -41,7 +42,8 @@ export class UploadTemplateComponent implements OnInit {
      },
      error => {
        console.log(error);
-     }
+     },
+     ()=>this.compService.openModal("Le template a bien été ajouté")
    );
   }
 }
