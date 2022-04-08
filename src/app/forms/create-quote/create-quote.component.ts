@@ -89,10 +89,10 @@ export class CreateQuoteComponent implements OnInit {
       totalPromo += x.unitPrice * x.quantity * (x.promo/100);
     })
     total = total - totalPromo;
-    this.data.totalHt = total;
+    this.data.totalHt = Number.parseInt(total.toFixed(2));
     this.data.tva = total * 0.21;
-    this.data.totalTtc = total + this.data.tva;
-    this.data.totalPromo = totalPromo;
+    this.data.totalTtc =Number.parseInt((total + this.data.tva).toFixed(2));
+    this.data.totalPromo = Number.parseInt(totalPromo.toFixed(2))
   }
   calculateTotalLine(index:number) {
     const line = this.createQuoteFormGroup.value.lines[index];
