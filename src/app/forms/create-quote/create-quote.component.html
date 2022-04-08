@@ -22,6 +22,10 @@
       <label>Ville</label>
        <input type="text" formControlName="city">
     </span>
+      <span>
+        <label>Téléphone</label>
+        <input type="text" formControlName="phone">
+      </span>
     </div>
     <div class="lines">
       <h2 style="text-align: center">lines</h2>
@@ -40,6 +44,10 @@
       <label>Prix unitaire</label>
        <input type="number" formControlName="unitPrice" (change)="calculateTotalLine(i)">
     </span>
+            <span>
+              <label>Promo</label>
+              <input type="number" formControlName="promo">
+            </span>
             <span>
       <label>Quantité</label>
        <input type="number" formControlName="quantity" (change)="calculateTotalLine(i)">

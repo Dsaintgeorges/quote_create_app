@@ -18,6 +18,7 @@
                                             <th>Nom</th>
                                             <th>Date de création</th>
                                             <th>Téléchargement</th>
+                                            <th>Par défaut</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -28,6 +29,8 @@
                                                <button (click)="downloadTemplate(template)">
                                                  <mat-icon>download</mat-icon>
                                                </button>
+                                              </td>
+                                            <td>
                                               <button (click)="setDefautltTemplate(template)">
                                                 <mat-icon>default</mat-icon>
                                               </button>

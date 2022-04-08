@@ -33,13 +33,15 @@ export class CreateQuoteComponent implements OnInit {
         adressNumber: ['', Validators.required],
         postalCode: ['', Validators.required],
         city: ['', Validators.required],
+        phone: ['', Validators.required],
         lines: this.formBuilder.array(
           this.data.linesArray.map(x => this.formBuilder.group({
             reference: this.formBuilder.control(x.reference),
             description: this.formBuilder.control(x.description),
             unitPrice: this.formBuilder.control(x.unitPrice),
             quantity: this.formBuilder.control(x.quantity),
-            total: this.formBuilder.control(x.total)
+            total: this.formBuilder.control(x.total),
+            promo:this.formBuilder.control(x.promo)
           }))
         )
       }
@@ -54,6 +56,7 @@ export class CreateQuoteComponent implements OnInit {
     this.data.client.adressRoad = form.adressRoad;
     this.data.client.name = form.client;
     this.data.linesArray = form.lines;
+    this.data.client.phone = form.phone;
     this.calculateTotal();
     const user = JSON.parse(<string>sessionStorage.getItem('user'));
     this.data.date = moment().format('DD/MM/YYYY');
@@ -79,13 +82,17 @@ export class CreateQuoteComponent implements OnInit {
 
   calculateTotal() {
     let total = 0;
+    let totalPromo = 0;
     this.data.linesArray.forEach(x => {
       x.total = x.unitPrice * x.quantity;
       total += x.total
+      totalPromo += x.unitPrice * x.quantity * (x.promo/100);
     })
+    total = total - totalPromo;
     this.data.totalHt = total;
     this.data.tva = total * 0.21;
     this.data.totalTtc = total + this.data.tva;
+    this.data.totalPromo = totalPromo;
   }
   calculateTotalLine(index:number) {
     const line = this.createQuoteFormGroup.value.lines[index];
@@ -101,6 +108,7 @@ export class CreateQuoteComponent implements OnInit {
       unitPrice: ['', Validators.required],
       quantity: ['', Validators.required],
       total: ['', Validators.required],
+      promo: ['', Validators.required]
     }));
     let line = new Lines();
     line.total = 0;
@@ -108,6 +116,7 @@ export class CreateQuoteComponent implements OnInit {
     line.description = "";
     line.reference = "";
     line.unitPrice = 0;
+    line.promo = 0;
     this.data.linesArray.push(line)
   }
 

@@ -34,9 +34,10 @@ export class TemplateService {
     params = params.append('filename', templateName);
     return this.http.get(DOWNLOAD_URL, {params,responseType: 'blob'});
   }
-  setDefaultTemplate(templateId:string){
+  setDefaultTemplate(templateId:string,userId:string){
     let params = new HttpParams();
     params = params.append('templateId', templateId);
+    params = params.append('userId', userId);
     return this.http.post(SET_DEFAULT, null,{params});
   }
 

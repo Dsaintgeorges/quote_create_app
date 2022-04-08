@@ -32,9 +32,6 @@ templates:any;
     this.templateService.downloadTemplate(template.name).subscribe(
       (response)=>{
         console.log(response);
-      /*  const file = new Blob([data], { type: 'application/vnd.oasis.opendocument.text' });
-        const fileURL = URL.createObjectURL(file);
-        window.open(fileURL);*/
         const a = document.createElement('a')
         const objectUrl = URL.createObjectURL(response)
         a.href = objectUrl
@@ -52,7 +49,8 @@ templates:any;
     return moment(date).format('DD-MM-YYYY-HH:mm');
   }
   setDefautltTemplate(template:any){
-    this.templateService.setDefaultTemplate(template.id).subscribe(
+    const user  = JSON.parse(<string>sessionStorage.getItem('user'));
+    this.templateService.setDefaultTemplate(template.id,user.id).subscribe(
       data=>{
         console.log(data);
         this.getTemplateList();

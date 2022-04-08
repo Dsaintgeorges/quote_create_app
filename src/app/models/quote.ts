@@ -7,6 +7,7 @@ export class Quote {
   tva: number;
   date: string;
   userId:number;
+  totalPromo:number;
 
   constructor() {
     this.client = new Client();
@@ -20,6 +21,7 @@ export class Lines {
   unitPrice: number;
   quantity: number;
   total: number;
+  promo: number;
 
   constructor() {
     this.reference = "";
@@ -27,6 +29,7 @@ export class Lines {
     this.unitPrice = 0;
     this.quantity = 0;
     this.total = 0;
+    this.promo = 0;
   }
 }
 
@@ -36,6 +39,7 @@ export class Client {
   adressNumber: string;
   postalCode: number;
   city: string;
+  phone:string;
 
   constructor() {
     this.name = "";
