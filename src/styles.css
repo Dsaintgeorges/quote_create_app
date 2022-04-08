@@ -1,8 +1,21 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;margin-bottom: 50px }
+body {
+  font-family: 'Montserrat',sans-serif;
+  font-weight:500;
+  margin: 0 0 50px;
+}
+.mat-body, .mat-body-1, .mat-typography, .mat-h1, .mat-headline, .mat-typography h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+}
+.mat-h2, .mat-title, .mat-typography h2 {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
 .modal-content{
   animation-name: example;
   animation-duration: 0.5s;
@@ -16,4 +29,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;margin-botto
   0%   {transform: scale(0.5)}
   75%  {transform: scale(1.1)}
   100% {transform: scale(1)}
+}
+mat-icon{
+  color: #3f51b5;
+}
+button{
+  background-color: #3f51b5 !important;
+  color: whitesmoke;
+}
+button:disabled{
+  background-color: rgba(119, 121, 140, 0.52) !important;
+  color: whitesmoke;
 }

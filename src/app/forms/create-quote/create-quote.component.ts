@@ -31,7 +31,7 @@ export class CreateQuoteComponent implements OnInit {
         client: ['', Validators.required],
         adressRoad: ['', Validators.required],
         adressNumber: ['', Validators.required],
-        postalCode: ['', Validators.required],
+        postalCode: ['', [Validators.required,Validators.minLength(5),Validators.maxLength(5)]],
         city: ['', Validators.required],
         phone: ['', Validators.required],
         lines: this.formBuilder.array(

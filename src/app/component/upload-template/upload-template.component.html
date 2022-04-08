@@ -9,14 +9,16 @@
                 <div class="panel-body">
                     <form (submit)="uploadTemplate()" [formGroup]="uploadForm">
                         <div class="form-group">
-                            <label for="template_name">Template Name</label>
-                            <input formControlName="name" type="text" class="form-control" id="template_name" name="template_name" placeholder="Template Name">
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Nom du template</mat-label>
+                            <input matInput formControlName="name" type="text">
+                          </mat-form-field>
                         </div>
                         <div class="form-group">
-                            <label for="template_file">Template File</label>
+                            <mat-label>Template a uploader</mat-label>
                             <input formControlName="file" type="file" (change)="changeFile($event)" class="form-control-file" id="template_file" name="template_file" placeholder="Template File">
                         </div>
-                        <button [disabled]="error" type="submit" class="btn btn-default">Submit</button>
+                        <button [disabled]="error" type="submit" class="btn btn-info">Submit</button>
                     </form>
                 </div>
             </div>

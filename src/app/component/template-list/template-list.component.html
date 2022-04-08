@@ -26,13 +26,13 @@
                                             <td>{{template.name}}</td>
                                             <td>{{convertDate(template.created_at)}}</td>
                                             <td>
-                                               <button (click)="downloadTemplate(template)">
+                                               <button class="btn btn-info" (click)="downloadTemplate(template)">
                                                  <mat-icon>download</mat-icon>
                                                </button>
                                               </td>
                                             <td>
-                                              <button (click)="setDefautltTemplate(template)">
-                                                <mat-icon>default</mat-icon>
+                                              <button class="btn btn-info" (click)="setDefautltTemplate(template)">
+                                                <mat-icon>check</mat-icon>
                                               </button>
                                             </td>
                                         </tr>

@@ -3,3 +3,10 @@
     margin-top: 60px;
   margin-left: 20px;
 }
+span{
+  margin-left:0.5em;
+  font-family: 'Montserrat', sans-serif;
+}
+mat-icon:nth-child(1){
+  color:white
+}

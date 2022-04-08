@@ -3,28 +3,42 @@
     <div class="client">
       <h2 style="text-align: center">Client</h2>
       <span>
-      <label>Nom complet</label>
-       <input matInput type="text" formControlName="client">
+        <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Nom & Prénom</mat-label>
+      <input matInput type="text" formControlName="client">
+    </mat-form-field>
     </span>
       <span>
-      <label>Rue</label>
-       <input type="text" formControlName="adressRoad">
+        <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Rue</mat-label>
+      <input matInput type="text" formControlName="adressRoad">
+    </mat-form-field>
     </span>
       <span>
-      <label>Numero</label>
-       <input type="text" formControlName="adressNumber">
+        <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Numéro</mat-label>
+      <input type="text" formControlName="adressNumber" matInput>
+    </mat-form-field>
     </span>
       <span>
-      <label>Code postal</label>
-       <input type="text" formControlName="postalCode">
+        <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Code postal</mat-label>
+      <input matInput type="number" min="1000" max="9999"
+             (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+             formControlName="postalCode">
+    </mat-form-field>
     </span>
       <span>
-      <label>Ville</label>
-       <input type="text" formControlName="city">
+       <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Ville</mat-label>
+       <input matInput type="text" formControlName="city">
+       </mat-form-field>
     </span>
       <span>
-        <label>Téléphone</label>
-        <input type="text" formControlName="phone">
+          <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Téléphone</mat-label>
+        <input matInput type="text" formControlName="phone">
+          </mat-form-field>
       </span>
     </div>
     <div class="lines">
@@ -33,28 +47,42 @@
         <div *ngFor="let line of data.linesArray;let i = index">
           <div [formGroupName]="i">
             <span>
-      <label>Réference produit</label>
-       <input type="text" formControlName="reference">
-    </span>
-            <span>
-      <label>Description</label>
-       <input type="text" formControlName="description">
-    </span>
-            <span>
-      <label>Prix unitaire</label>
-       <input type="number" formControlName="unitPrice" (change)="calculateTotalLine(i)">
-    </span>
-            <span>
-              <label>Promo</label>
-              <input type="number" formControlName="promo">
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Réference produit</mat-label>
+                  <input matInput type="text" formControlName="reference">
+                </mat-form-field>
             </span>
             <span>
-      <label>Quantité</label>
-       <input type="number" formControlName="quantity" (change)="calculateTotalLine(i)">
-    </span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Description</mat-label>
+                  <input matInput type="text" formControlName="description">
+                </mat-form-field>
+            </span>
+            <span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Prix unitaire</mat-label>
+                  <input matInput type="number" formControlName="unitPrice"
+                         (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                         (change)="calculateTotalLine(i)">
+                </mat-form-field>
+            </span>
+            <span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Promo</mat-label>
+                  <input matInput type="number" formControlName="promo" (keypress)="($event.charCode >= 48 && $event.charCode < 58)">
+                </mat-form-field>
+            </span>
+            <span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Quantité</mat-label>
+                  <input matInput type="number" formControlName="quantity"
+                        (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                        (change)="calculateTotalLine(i)">
+                </mat-form-field>
+            </span>
             <span>
               <p type="text"> Total : {{createQuoteFormGroup.value?.lines[i].total}}</p>
-    </span>
+            </span>
             <span>
               <a (click)="deleteQuoteLine(i)">
               <mat-icon>delete</mat-icon>
@@ -64,10 +92,10 @@
         </div>
       </div>
       <span>
-         <button type="button" (click)="addLine()">Ajouter une ligne</button>
+         <button class="btn btn-info" type="button" (click)="addLine()">Ajouter une ligne</button>
       </span>
     </div>
-    <button type="submit" [disabled]="!data.linesArray.length"> envoyer</button>
+    <button class="btn btn-info" type="submit" [disabled]="!data.linesArray.length"> envoyer</button>
 
 
   </form>
