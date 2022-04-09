@@ -1,0 +1,21 @@
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.form-content{
+  width: 450px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+h1{
+  font-size: 16px;
+  font-weight: 700;
+  color: #3f51b5 ;
+}

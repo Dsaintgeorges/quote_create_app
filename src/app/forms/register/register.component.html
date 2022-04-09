@@ -1,64 +1,89 @@
 
 <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
-  <div class="form-group">
-    <label for="username">Entreprise</label>
-    <input type="text" class="form-control" id="username" formControlName="username"
-           placeholder="Enter username">
-    <p *ngIf="f.username.errors && submitted" class="invalid">
-      Vous n'avez pas de nom d'entreprise?
-    </p>
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="text" class="form-control" id="email" formControlName="email" placeholder="Email">
-    <p *ngIf="f.email.errors && submitted" class="invalid">Veuillez entrer un email</p>
-  </div>
+  <div class="form-content">
+    <h1>Créer un compte</h1>
     <div class="form-group">
-      <label for="phone">N° de telephone</label>
-      <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Phone">
-      <p *ngIf="f.phone.errors && submitted" class="invalid">Veuillez entrer un numéro de téléphone</p>
+      <mat-form-field>
+        <mat-label>Entreprise</mat-label>
+        <input matInput type="text" formControlName="username">
+        <p *ngIf="f.username.errors && submitted" class="invalid">
+          Vous n'avez pas de nom d'entreprise?
+        </p>
+      </mat-form-field>
     </div>
-  <div class="form-group">
-    <label for="password">Mot de passe</label>
-    <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label for="firstname">Prénom</label>
-    <input type="text" class="form-control" id="firstname" formControlName="firstname" placeholder="Firstname">
-    <p *ngIf="f.firstname.errors && submitted" class="invalid">Veuillez entrer un prénom</p>
-  </div>
-  <div class="form-group">
-    <label for="lastname">Nom</label>
-    <input type="text" class="form-control" id="lastname" formControlName="lastname" placeholder="Lastname">
-    <p *ngIf="f.lastname.errors && submitted" class="invalid">Veuillez entrer un nom</p>
-  </div>
-  <div class="form-group">
-    <label for="address">adresse</label>
-    <input type="text" class="form-control" id="address" formControlName="address" placeholder="Address">
-    <p *ngIf="f.address.errors && submitted" class="invalid">Veuillez entrer une adresse</p>
-  </div>
-  <div class="form-group">
-    <label for="city">Ville</label>
-    <input type="text" class="form-control" id="city" formControlName="city" placeholder="City">
-    <p *ngIf="f.city.errors && submitted" class="invalid">Veuillez entrer une ville</p>
-  </div>
-  <div class="form-group">
-    <label for="zipcode">Code postal</label>
-    <input type="text" class="form-control" id="zipcode" formControlName="zipcode" placeholder="zipcode">
-    <p *ngIf="f.zipcode.errors && submitted" class="invalid">Veuillez entrer un code postal</p>
-  </div>
     <div class="form-group">
-      <label for="state">Etat</label>
-      <input type="text" class="form-control" id="state" formControlName="state" placeholder="state">
-      <p *ngIf="f.state.errors && submitted" class="invalid">Veuillez entrer un état</p>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="text" formControlName="email">
+        <p *ngIf="f.email.errors && submitted" class="invalid">Veuillez entrer un email</p>
+      </mat-form-field>
     </div>
-  <div class="form-group">
-    <label for="vatnumber">TVA</label>
-    <input type="text" class="form-control" id="vatnumber"
-           formControlName="vatnumber" placeholder="VAT"
-           [ngClass]="{ 'is-invalid': f.vatnumber.errors }">
-    <p class="invalid" *ngIf="f.vatnumber.errors">Veuillez saisir un numéro de tva valide</p>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>N° de telephone</mat-label>
+        <input matInput type="text" formControlName="phone">
+        <p *ngIf="f.phone.errors && submitted" class="invalid">Veuillez entrer un numéro de téléphone</p>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" formControlName="password">
+        <p *ngIf="f.password.errors && submitted" class="invalid">Veuillez entrer un mot de passe</p>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Prénom</mat-label>
+        <input matInput type="text" formControlName="firstname">
+        <p *ngIf="f.firstname.errors && submitted" class="invalid">Veuillez entrer un prénom</p>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input matInput type="text" formControlName="lastname">
+        <p *ngIf="f.lastname.errors && submitted" class="invalid">Veuillez entrer un nom</p>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Adresse</mat-label>
+        <input matInput type="text"  formControlName="address" >
+        <p *ngIf="f.address.errors && submitted" class="invalid">Veuillez entrer une adresse</p>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Ville</mat-label>
+        <input matInput type="text"  formControlName="city" >
+        <p *ngIf="f.city.errors && submitted" class="invalid">Veuillez entrer une ville</p>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Code postal</mat-label>
+        <input matInput type="text" formControlName="zipcode" >
+        <p *ngIf="f.zipcode.errors && submitted" class="invalid">Veuillez entrer un code postal</p>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Etat</mat-label>
+        <input matInput type="text" formControlName="state" >
+        <p *ngIf="f.state.errors && submitted" class="invalid">Veuillez entrer un état</p>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>N° de TVA</mat-label>
+        <input matInput type="text" formControlName="vatnumber"
+               [ngClass]="{ 'is-invalid': f.vatnumber.errors }">
+        <p class="invalid" *ngIf="f.vatnumber.errors">Veuillez saisir un numéro de tva valide</p>
+      </mat-form-field>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 
