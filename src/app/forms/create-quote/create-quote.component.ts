@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Lines, Quote} from "../../models/quote";
 import {FormArray, FormBuilder, Validators} from "@angular/forms";
 import {QuoteServiceService} from "../../services/quote-service.service";
 import * as moment from "moment";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {ConfirmComponent} from "../../modal/confirm/confirm.component";
 import {ComponentService} from "../../services/component.service";
+import {User} from "../../models/Users";
+import {ModalType} from "../../models/modalType";
+import {UserService} from "../../services/user.service";
+import {TemplateService} from "../../services/template.service";
 
 @Component({
   selector: 'app-create-quote',
@@ -18,9 +20,12 @@ export class CreateQuoteComponent implements OnInit {
   createQuoteFormGroup: any;
   data: Quote = new Quote();
   lines = new FormArray([]);
-
+  isDefaultTemplatePresent = false;
+  displayedColumns: string[] = ['Description', 'Prix U.','Promotion %'];
   constructor(private formBuilder: FormBuilder, private quoteService: QuoteServiceService,
-              private componentService:ComponentService) {
+              private componentService:ComponentService,private userService:UserService,
+              private templateService:TemplateService) {
+  this.checkTemplate();
   }
 
   ngOnInit() {
@@ -49,6 +54,7 @@ export class CreateQuoteComponent implements OnInit {
   }
 
   validate() {
+    console.log("validate");
     const form = this.createQuoteFormGroup.value
     this.data.client.city = form.city;
     this.data.client.adressNumber = form.adressNumber;
@@ -58,10 +64,13 @@ export class CreateQuoteComponent implements OnInit {
     this.data.linesArray = form.lines;
     this.data.client.phone = form.phone;
     this.calculateTotal();
-    const user = JSON.parse(<string>sessionStorage.getItem('user'));
+    const user:User = JSON.parse(<string>sessionStorage.getItem('user'));
     this.data.date = moment().format('DD/MM/YYYY');
     this.data.pro = {
       name: user.username,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      vat: user.vatnumber,
       address: user.address,
       zipcode: user.zipcode,
       city: user.city,
@@ -71,13 +80,17 @@ export class CreateQuoteComponent implements OnInit {
     this.data.userId = user.id;
     this.quoteService.createQuote(this.data).subscribe(
       (data:any) => console.log(data),
-      (err) => console.log(err),
+      (err) => {
+        console.log(err),
+          this.componentService.openModal('Erreur lors de la création', ModalType.Error)
+      },
       ()=> {
         this.createQuoteFormGroup.reset()
-        this.componentService.openModal("Devis créé avec succès")
+        this.componentService.openModal("Devis créé avec succès",ModalType.Success)
       }
     )
   }
+
 
 
   calculateTotal() {
@@ -120,9 +133,28 @@ export class CreateQuoteComponent implements OnInit {
     this.data.linesArray.push(line)
   }
 
-
-
   deleteQuoteLine(index:any) {
     this.data.linesArray.splice(index,1);
+  }
+
+  // check if user have default template or not
+  checkTemplate(){
+    const user = JSON.parse(<string>sessionStorage.getItem('user'));
+    this.userService.isUserHaveDefaultTemplate(user.id).subscribe(
+      (data:boolean)=>{
+        console.log(data,'data')
+        this.isDefaultTemplatePresent = data;
+      }
+    )
+  }
+
+  downloadDefault() {
+    this.templateService.downloadDefaultTemplate().subscribe(
+      (data:any)=>{
+        const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        const fileURL = window.URL.createObjectURL(blob);
+        window.open(fileURL);
+      }
+    )
   }
 }

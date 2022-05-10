@@ -1,3 +1,4 @@
-<div class="modal-content">
+<div class="modal-content" [ngClass]="{'modal-content-green':modalType.Success === color,
+'modal-content-danger':modalType.Error === color}">
   <p style="margin:auto;padding: 30px">{{text}}</p>
 </div>

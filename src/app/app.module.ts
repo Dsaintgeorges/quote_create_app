@@ -23,6 +23,7 @@ import { TemplateListComponent } from './component/template-list/template-list.c
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmComponent } from './modal/confirm/confirm.component';
 import {MatInputModule} from "@angular/material/input";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import {MatInputModule} from "@angular/material/input";
         FormsModule,
         NgbModule,
         MatInputModule,
+        MatTableModule,
     ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

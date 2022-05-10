@@ -22,8 +22,10 @@ export class UploadTemplateComponent implements OnInit {
   ngOnInit(): void {
   }
   changeFile(event:any){
-    if(event.target.files[0].type !== 'application/vnd.oasis.opendocument.text'){
-      alert('Le template doit imperativement etre au format .odt');
+    if(
+      event.target.files[0].type !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+     ){
+      alert('Le template doit imperativement etre au format .odt ou docx');
       this.error = true;
       return;
     }else{

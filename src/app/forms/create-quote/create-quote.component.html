@@ -1,26 +1,28 @@
-<div>
-  <form [formGroup]="createQuoteFormGroup" (submit)="validate()">
-    <div class="client">
-      <h2 style="text-align: center">Client</h2>
-      <span>
+<ng-container *ngIf="!isDefaultTemplatePresent">
+  <div style="display: flex;justify-content: center">
+    <div class="form-content">
+      <form [formGroup]="createQuoteFormGroup" (submit)="validate()">
+        <div class="client">
+          <h2 style="text-align: center">Client</h2>
+          <span>
         <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Nom & Prénom</mat-label>
       <input matInput type="text" formControlName="client">
     </mat-form-field>
     </span>
-      <span>
+          <span>
         <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Rue</mat-label>
       <input matInput type="text" formControlName="adressRoad">
     </mat-form-field>
     </span>
-      <span>
+          <span>
         <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Numéro</mat-label>
       <input type="text" formControlName="adressNumber" matInput>
     </mat-form-field>
     </span>
-      <span>
+          <span>
         <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Code postal</mat-label>
       <input matInput type="number" min="1000" max="9999"
@@ -28,75 +30,121 @@
              formControlName="postalCode">
     </mat-form-field>
     </span>
-      <span>
+          <span>
        <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Ville</mat-label>
        <input matInput type="text" formControlName="city">
        </mat-form-field>
     </span>
-      <span>
+          <span>
           <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Téléphone</mat-label>
         <input matInput type="text" formControlName="phone">
           </mat-form-field>
       </span>
-    </div>
-    <div class="lines">
-      <h2 style="text-align: center">lines</h2>
-      <div formArrayName="lines">
-        <div *ngFor="let line of data.linesArray;let i = index">
-          <div [formGroupName]="i">
-            <span>
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Réference produit</mat-label>
-                  <input matInput type="text" formControlName="reference">
-                </mat-form-field>
-            </span>
-            <span>
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Description</mat-label>
-                  <input matInput type="text" formControlName="description">
-                </mat-form-field>
-            </span>
-            <span>
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Prix unitaire</mat-label>
-                  <input matInput type="number" formControlName="unitPrice"
-                         (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
-                         (change)="calculateTotalLine(i)">
-                </mat-form-field>
-            </span>
-            <span>
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Promo</mat-label>
-                  <input matInput type="number" formControlName="promo" (keypress)="($event.charCode >= 48 && $event.charCode < 58)">
-                </mat-form-field>
-            </span>
-            <span>
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Quantité</mat-label>
-                  <input matInput type="number" formControlName="quantity"
-                        (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
-                        (change)="calculateTotalLine(i)">
-                </mat-form-field>
-            </span>
-            <span>
-              <p type="text"> Total : {{createQuoteFormGroup.value?.lines[i].total}}</p>
-            </span>
-            <span>
-              <a (click)="deleteQuoteLine(i)">
-              <mat-icon>delete</mat-icon>
-                </a>
-            </span>
-          </div>
         </div>
-      </div>
-      <span>
+        <div>
+          <h2 style="text-align: center">lines</h2>
+          <div formArrayName="lines" class="table-content">
+            <table style="width: 80%" class="table">
+              <thead>
+              <tr>
+                <th >Description</th>
+                <th >Prix unitaire</th>
+                <th >Promotion %</th>
+                <th >Quantité</th>
+                <th >Total</th>
+                <th ></th>
+              </tr>
+              </thead>
+              <tbody >
+              <tr *ngFor="let line of data.linesArray;let i = index" [formGroupName]="i">
+                <td>
+                    <input matInput type="text" formControlName="description">
+                </td>
+                <td>
+                  <input class="little-input" matInput type="number" formControlName="unitPrice">
+                </td>
+                <td>
+                    <input class="little-input" matInput type="number" formControlName="promo">
+-                </td>
+                <td>
+                    <input matInput type="number" class="little-input" formControlName="quantity">
+                </td>
+                <td>
+                  <p type="text">{{createQuoteFormGroup.value?.lines[i].total}}</p>
+                </td>
+                <td>
+                  <a (click)="deleteQuoteLine(i)">
+                    <mat-icon>delete</mat-icon>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+
+            <!-- <div *ngFor="let line of data.linesArray;let i = index">
+               <div [formGroupName]="i" class="lines">
+                 <span>
+                   <mat-form-field class="example-full-width" appearance="fill">
+                     <mat-label>Réference produit</mat-label>
+                     <input matInput type="text" formControlName="reference">
+                   </mat-form-field>
+               </span>
+                   <span>
+                   <mat-form-field class="example-full-width" appearance="fill">
+                     <mat-label>Description</mat-label>
+                     <input matInput type="text" formControlName="description">
+                   </mat-form-field>
+               </span>
+
+                 <span>
+                   <mat-form-field class="example-full-width" appearance="fill">
+                     <mat-label>Prix unitaire</mat-label>
+                     <input matInput type="number" formControlName="unitPrice"
+                            (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                            (change)="calculateTotalLine(i)">
+                   </mat-form-field>
+               </span>
+                   <span>
+                   <mat-form-field class="example-full-width" appearance="fill">
+                     <mat-label>Promo</mat-label>
+                     <input matInput type="number" formControlName="promo" (keypress)="($event.charCode >= 48 && $event.charCode < 58)">
+                   </mat-form-field>
+               </span>
+                   <span>
+                   <mat-form-field class="example-full-width" appearance="fill">
+                     <mat-label>Quantité</mat-label>
+                     <input matInput type="number" formControlName="quantity"
+                            (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                            (change)="calculateTotalLine(i)">
+                   </mat-form-field>
+               </span>
+                 <div>
+                 <span>
+                 <p type="text"> Total : {{createQuoteFormGroup.value?.lines[i].total}}</p>
+               </span>
+                   <span>
+
+               </span>
+                 </div>
+               </div>
+             </div>-->
+          </div>
+          <span>
          <button class="btn btn-info" type="button" (click)="addLine()">Ajouter une ligne</button>
       </span>
+        </div>
+        <button class="btn btn-info send" type="submit" [disabled]="!data.linesArray.length"> envoyer</button>
+
+
+      </form>
     </div>
-    <button class="btn btn-info" type="submit" [disabled]="!data.linesArray.length"> envoyer</button>
+  </div>
+</ng-container>
+<ng-container *ngIf="isDefaultTemplatePresent">
+  <p>Vous devez d'abord uploader un template</p>
+  <p>Vous pouvez en télécharger un </p><a (click)="downloadDefault()">ICI</a>
+</ng-container>
 
-
-  </form>
-</div>

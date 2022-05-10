@@ -6,3 +6,42 @@ span{
   flex:3;
   justify-content: space-evenly;
 }
+.lines{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+.table-content{
+  display: flex;
+  justify-content: center;
+  overflow: scroll;
+}
+th{
+  text-align: left;
+}
+.form-content{
+  width: 70%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.send{
+  position: absolute;
+  right: 20%;
+}
+
+form{
+  width: 100%;
+}
+td input{
+  background-color: gray;
+}
+
+.little-input{
+  width:40px;
+}

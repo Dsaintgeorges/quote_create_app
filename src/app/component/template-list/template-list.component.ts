@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TemplateService} from "../../services/template.service";
 import * as moment from "moment"
+import {ComponentService} from "../../services/component.service";
+import {ModalType} from "../../models/modalType";
 
 @Component({
   selector: 'app-template-list',
@@ -9,7 +11,7 @@ import * as moment from "moment"
 })
 export class TemplateListComponent implements OnInit {
 templates:any;
-  constructor(private templateService:TemplateService) { }
+  constructor(private templateService:TemplateService,private componentService:ComponentService) { }
 
   ngOnInit(): void {
     this.getTemplateList();
@@ -54,9 +56,11 @@ templates:any;
       data=>{
         console.log(data);
         this.getTemplateList();
+        this.componentService.openModal('Template par défaut mis à jour',ModalType.Success)
       },
       error=>{
         console.log(error);
+        this.componentService.openModal('Erreur lors de la mise à jour du template par défaut',ModalType.Error)
       }
     )
   }

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {QuoteServiceService} from "../../services/quote-service.service";
 import {QuoteList} from "../../models/quoteList";
+import {ComponentService} from "../../services/component.service";
+import {ModalType} from "../../models/modalType";
 
 @Component({
   selector: 'app-quote-list',
@@ -10,7 +12,7 @@ import {QuoteList} from "../../models/quoteList";
 export class QuoteListComponent implements OnInit {
   quotes: QuoteList[];
 
-  constructor(private quoteService: QuoteServiceService) {
+  constructor(private quoteService: QuoteServiceService,private componentService:ComponentService) {
   }
 
   ngOnInit(): void {
@@ -40,6 +42,7 @@ export class QuoteListComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.componentService.openModal('Erreur lors du téléchargement du PDF',ModalType.Error);
       });
   }
 }

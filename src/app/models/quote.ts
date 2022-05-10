@@ -8,6 +8,7 @@ export class Quote {
   date: string;
   userId:number;
   totalPromo:number;
+  additionalInformations:string;
 
   constructor() {
     this.client = new Client();
@@ -52,18 +53,24 @@ export class Client {
 
 export class Pro {
   name: string;
+  firstname:string;
+  lastname:string;
   address: string;
   zipcode: string;
   city: string;
-  phone: number;
+  phone: string;
   email: string;
+  vat: string;
   constructor() {
     this.name = "";
     this.address = "";
     this.zipcode = "";
-    this.phone = 0;
+    this.phone = "";
     this.email = "";
     this.city = "";
+    this.firstname = "";
+    this.lastname = "";
+    this.vat = "";
   }
 
 }

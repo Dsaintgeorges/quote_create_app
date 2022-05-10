@@ -1,5 +1,6 @@
 // create class user with properties username, password, email, firstname, lastname, phone, address, city, state, zipcode,vatnumber
 export class User {
+    id: number;
     username: string;
     password: string;
     email: string;

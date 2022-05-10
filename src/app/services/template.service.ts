@@ -6,6 +6,7 @@ const UPLOAD_URL = environment.apiUrl + '/upload-template';
 const DOWNLOAD_URL = environment.apiUrl + '/download-template';
 const GET_TEMPLATES = environment.apiUrl + '/get-templates';
 const SET_DEFAULT = environment.apiUrl + '/set-default-template';
+const DOWNLOAD_DEFAULT = environment.apiUrl + '/download-default-template';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,10 @@ export class TemplateService {
     params = params.append('templateId', templateId);
     params = params.append('userId', userId);
     return this.http.post(SET_DEFAULT, null,{params});
+  }
+
+  downloadDefaultTemplate(){
+    return this.http.get(DOWNLOAD_DEFAULT, {responseType: 'blob'});
   }
 
 }
