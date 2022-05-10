@@ -39,7 +39,7 @@ form{
   width: 100%;
 }
 td input{
-  background-color: gray;
+  background-color: rgba(0,0,0,.04);
 }
 
 .little-input{
