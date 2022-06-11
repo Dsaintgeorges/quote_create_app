@@ -1,4 +1,4 @@
-<ng-container *ngIf="!isDefaultTemplatePresent">
+<ng-container *ngIf="isDefaultTemplatePresent">
   <div style="display: flex;justify-content: center">
     <div class="form-content">
       <form [formGroup]="createQuoteFormGroup" (submit)="validate()">
@@ -143,7 +143,7 @@
     </div>
   </div>
 </ng-container>
-<ng-container *ngIf="isDefaultTemplatePresent">
+<ng-container *ngIf="!isDefaultTemplatePresent">
   <p>Vous devez d'abord uploader un template</p>
   <p>Vous pouvez en télécharger un </p><a (click)="downloadDefault()">ICI</a>
 </ng-container>
