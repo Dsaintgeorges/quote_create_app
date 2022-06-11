@@ -21,7 +21,6 @@ templates:any;
     const user = JSON.parse(<string>sessionStorage.getItem('user'));
     this.templateService.getAllTemplates(user.id).subscribe(
       data=>{
-        console.log(data);
         this.templates=data;
       },
       error=>{
@@ -33,7 +32,6 @@ templates:any;
     console.log(template);
     this.templateService.downloadTemplate(template.name).subscribe(
       (response)=>{
-        console.log(response);
         const a = document.createElement('a')
         const objectUrl = URL.createObjectURL(response)
         a.href = objectUrl
@@ -54,7 +52,6 @@ templates:any;
     const user  = JSON.parse(<string>sessionStorage.getItem('user'));
     this.templateService.setDefaultTemplate(template.id,user.id).subscribe(
       data=>{
-        console.log(data);
         this.getTemplateList();
         this.componentService.openModal('Template par défaut mis à jour',ModalType.Success)
       },

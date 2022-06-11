@@ -20,16 +20,16 @@ export class CreateQuoteComponent implements OnInit {
   createQuoteFormGroup: any;
   data: Quote = new Quote();
   lines = new FormArray([]);
-  isDefaultTemplatePresent = false;
+  isDefaultTemplatePresent:boolean;
   displayedColumns: string[] = ['Description', 'Prix U.','Promotion %'];
   constructor(private formBuilder: FormBuilder, private quoteService: QuoteServiceService,
               private componentService:ComponentService,private userService:UserService,
               private templateService:TemplateService) {
-  this.checkTemplate();
   }
 
   ngOnInit() {
-
+    console.log(this.isDefaultTemplatePresent)
+    this.checkTemplate();
     // the lines is used with array of lines
     this.createQuoteFormGroup = this.formBuilder.group(
       {
@@ -142,7 +142,6 @@ export class CreateQuoteComponent implements OnInit {
     const user = JSON.parse(<string>sessionStorage.getItem('user'));
     this.userService.isUserHaveDefaultTemplate(user.id).subscribe(
       (data:boolean)=>{
-        console.log(data,'data')
         this.isDefaultTemplatePresent = data;
       }
     )

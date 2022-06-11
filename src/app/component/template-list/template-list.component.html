@@ -31,9 +31,7 @@
                                                </button>
                                               </td>
                                             <td>
-                                              <button class="btn btn-info" (click)="setDefautltTemplate(template)">
-                                                <mat-icon>check</mat-icon>
-                                              </button>
+                                              <input type="checkbox" (change)="setDefautltTemplate(template)" [(ngModel)]="template.is_default">
                                             </td>
                                         </tr>
                                     </tbody>
